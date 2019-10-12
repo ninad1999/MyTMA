@@ -4,8 +4,13 @@
     <title>Google Calendar API Quickstart</title>
 
     <meta charset="utf-8" />
-    <link href='fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
+
+    <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+
+    <script src='fullcalendar/packages/core/main.js'></script>
+    <script src='fullcalendar/packages/google-calendar/main.js'></script>
+    <script src='fullcalendar/packages/daygrid/main.js'></script>
   </head>
   <body>
     <p>Google Calendar API Quickstart</p>
@@ -16,11 +21,7 @@
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
-    <link href='fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
-
-    <script src='fullcalendar/packages/core/main.js'></script>
-    <script src='fullcalendar/packages/google-calendar/main.js'></script>
+    <div id='calendar'></div>
 
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
