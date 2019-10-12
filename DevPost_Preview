@@ -6,19 +6,31 @@ MyTMA (My Time Managemnet Assistant)
 Tells My Actions!
 
 Inspiration
+A lot of students like us face difficulties in managing time during thier hectic university schedules. 
+They also don't have time to sit down and manage their calenders. In this decade of extreme depression and social pessimisism, we wanted to create soemthing for social good.
+
 
 What it does
+Thus, our application is a time management tool for students to create effcetive calenders and inculcate healthy habits 
+and optimal time utilization for fitness/mental health/entertainment without losing the focus on their priority i.e. academics. 
 
 How we built it
+Setting up a cloud online for machine learning and text detection
 
 Challenges we ran into
+Accessing the user location and finding relevant events using API.
+Using a javascript calender API for adding or cancelling events in the calender format.
+Using machine learning for object detection (text detection to be specific).
+Integrating all parts using a convinient pipeline.
+Adding features such as creating reminders and conducting weekly surveys.
 
 Accomplishments that we're proud of
 
 What we learned
 
-What's next for Millennial Money Madness
+What's next for MyTMA
 
 Built With
-
+Python Tensorflow CSS Angular Javascript Google-API 
 Try it out
+(hyperlink)
