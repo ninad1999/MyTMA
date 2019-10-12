@@ -1,0 +1,23 @@
+{
+  "name": "my_tma",
+  "version": "1.0.0",
+  "description": "our app for mhacks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninad1999/MyTMA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninad1999/MyTMA/issues"
+  },
+  "homepage": "https://github.com/ninad1999/MyTMA#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}
