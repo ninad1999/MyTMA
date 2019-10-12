@@ -18,7 +18,7 @@ How we built it
 Setting up a cloud online for machine learning and text detection
 
 Challenges we ran into
-Accessing the user location and finding relevant events using API.
+Accessing the user location and finding relevant events using (tm) API.
 Using a javascript calender API for adding or cancelling events in the calender format.
 Using machine learning for object detection (text detection to be specific).
 Integrating all parts using a convinient pipeline.
