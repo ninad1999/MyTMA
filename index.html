@@ -67,6 +67,9 @@
       var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
+     // var doc = $(document);
+      var sentData = {};
+      var socket = io.connect("/");
       event_start = [];
       event_end = [];
       event_name = [];
@@ -188,15 +191,60 @@
       console.log(event_name);
       console.log(len);
 
-      window.navigator.geolocation.getCurrentPosition(pos => {
-        console.log(pos.coords.longitude)
-        console.log(pos.coords.latitude)
-      })
+      if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(positionSuccess, positionError, { enableHighAccuracy: true });
+	    } else {
+		    console.log("browser doesn't support geolocation");
+	    }
+
+      // window.navigator.geolocation.getCurrentPosition(pos => {
+      //   console.log(pos.coords.longitude)
+      //   console.log(pos.coords.latitude)
+      // })
+
+      function positionSuccess(position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        var acr = position.coords.accuracy;
+
+        // doc.on("mousemove", function() {
+        // active = true; 
+
+        sentData = {
+          id: userId,
+          active: active,
+          coords: [{
+            lat: lat,
+            lng: lng,
+            acr: acr
+          }]
+        }
+
+        console.log(sentData);
+
+        socket.emit("send:coords", sentData);
+      //});
+    }
+
+    function positionError(error) {
+      var errors = {
+        1: "Authorization fails", // permission denied
+        2: "Can't detect your location", //position unavailable
+        3: "Connection timeout" // timeout
+      };
+      showError("Error:" + errors[error.code]);
+    }
+
+
+
+	// doc.bind("mouseup mouseleave", function() {
+	// 	active = false;
+	// });
 
 
 
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">

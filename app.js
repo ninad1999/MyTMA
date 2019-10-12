@@ -1,6 +1,31 @@
 var express = require('express');
-var app = express();
+var router = express();
 var request = require("request");
+var http = require('http');
+var static = require('node-static');
+var app = http.createServer(handler);
+var io = require('socket.io').listen(app);
+
+var files = new static.Server('./');
+
+function handler(request, response) {
+	request.addListener('end', function() {
+		files.serve(request, response);
+	});
+}
+
+// listen for incoming connections from client
+io.sockets.on('connection', function (socket) {
+
+  // start listening for coords
+  socket.on('send:coords', function (data) {
+
+  	// broadcast your coordinates to everyone except you
+      //socket.broadcast.emit('load:coords', data);
+      console.log("LOCATION");
+      console.log(data);
+  });
+});
 
 var URL = 'https://us1.locationiq.com/v1/search.php?key=e1b6a0b9a71d8d&q=University%20of%20Michigan&format=json';
 var eventsURL = 'https://app.ticketmaster.com/discovery/v2/suggest.json?size=1&apikey=ExyGUG26TxUJ2jSEetnL4IuJhIv3axQm';
@@ -34,10 +59,7 @@ var eventsURL = 'https://app.ticketmaster.com/discovery/v2/suggest.json?size=1&a
     
 //   }
 
-
-
-
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
 
     var lat;
     var lon;
