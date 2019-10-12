@@ -1,34 +1,40 @@
-Devpost
-Hackathons
-Projects
-UPDATES
 MyTMA (My Time Managemnet Assistant)
 Tells My Actions!
 
 Inspiration
-A lot of students like us face difficulties in managing time during thier hectic university schedules. 
-They also don't have time to sit down and manage their calenders. In this decade of extreme depression and social pessimisism, we wanted to create soemthing for social good.
-
+A lot of students like us face difficulties in managing time during their hectic university schedules. 
+They also don't have time to sit down and manage their calenders. 
+Depression caused due to ineffective time management skills, is making the students in this advanced developing generation weak.
+88% of the college students want to increase their ability to manage time but could not even get some time out to sit with their calendar.
+Mental health is the best solution for social good.
+In this decade of extreme depression and social pessimisism, we wanted to create soemthing for social good.
 
 What it does
-Thus, our application is a time management tool for students to create effcetive calenders and inculcate healthy habits 
-and optimal time utilization for fitness/mental health/entertainment without losing the focus on their priority i.e. academics. 
-
+Our application- MyTMA is a time management tool for students to create effcetive calenders, inculcate healthy habit and 
+optimize time utilization for fitness/mental health/entertainment without losing the focus on their priority i.e. academics. 
+It is a user friendly application with a lot of innovative features.
+  In details:
+  Accesses the user location and finding relevant events using (tm) API.
+  Uses a javascript calender API for adding or cancelling events in the calender format.
+  Uses machine learning for object detection (text detection to be specific).
+  Integrates all parts using a convinient pipeline.
+  Adds features such as creating reminders and conducting weekly surveys.
+  
 How we built it
 Setting up a cloud online for machine learning and text detection
+Confusion
 
 Challenges we ran into
-Accessing the user location and finding relevant events using (tm) API.
-Using a javascript calender API for adding or cancelling events in the calender format.
-Using machine learning for object detection (text detection to be specific).
-Integrating all parts using a convinient pipeline.
-Adding features such as creating reminders and conducting weekly surveys.
+Making the front end and the back end meet.
 
 Accomplishments that we're proud of
 
 What we learned
 
 What's next for MyTMA
+Suggest events too using machine learning.
+Voice recognition for scheduling events.
+Make it more convenient for the user.
 
 Built With
 Python Tensorflow CSS Angular Javascript Google-API 
