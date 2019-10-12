@@ -13,6 +13,14 @@
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
+    <script src='fullcalendar/core/main.js'></script>
+    <script src='fullcalendar/google-calendar/main.js'></script>
+    <script>
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'googleCalendar' ]
+    });
+    </script>
+
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '907096733100-qb5gn17ah4bfpe0lfsoqq43a8o4vppr7.apps.googleusercontent.com';
@@ -28,6 +36,9 @@
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
 
+      event_start = [];
+      event_end = [];
+      event_name = [];
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -67,6 +78,9 @@
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
           listUpcomingEvents();
+          console.log(get_event_start());
+          console.log(get_event_end());
+          console.log(get_event_name());
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
@@ -104,13 +118,27 @@
        * the authorized user's calendar. If no events are found an
        * appropriate message is printed.
        */
+
+      function get_event_start() {
+        return this.event_start;
+      }
+
+      function get_event_end() {
+        return this.event_end;
+      }
+
+      function get_event_name() {
+        return this.event_name;
+      }
+
       function listUpcomingEvents() {
+
         gapi.client.calendar.events.list({
           'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
-          'maxResults': 10,
+          'maxResults': 100,
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
@@ -120,16 +148,27 @@
             for (i = 0; i < events.length; i++) {
               var event = events[i];
               var when = event.start.dateTime;
+              var when2 = event.end.dateTime;
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')')
+              event_start.push(event.start)
+              event_end.push(event.end)
+              event_name.push(event.summary)
+              appendPre(event.summary + ' (' + when + ')' + '(' + when2 + ')')
             }
-          } else {
+          }
+            else {
             appendPre('No upcoming events found.');
           }
         });
+        return event_start;
       }
+
+      window.navigator.geolocation.getCurrentPosition(pos => {
+        console.log(pos.coords.longitude)
+        console.log(pos.coords.latitude)
+      })
 
     </script>
 
@@ -137,5 +176,6 @@
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+
   </body>
 </html>
