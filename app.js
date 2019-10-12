@@ -2,6 +2,10 @@ var express = require('express');
 var router = express();
 var request = require("request");
 var http = require('http');
+
+router.use(express.static(__dirname + "/public"));
+// console.log(__dirname); // __dirname: /home/ubuntu/workspace/V5
+router.set("view engine", "ejs");
 //var static = require('node-static');
 //var app = http.createServer(handler);
 // var socket = require('socket.io-client')('http://localhost');
@@ -33,7 +37,7 @@ var http = require('http');
 //var URL = 'https://us1.locationiq.com/v1/search.php?key=e1b6a0b9a71d8d&q=University%20of%20Michigan&format=json';
 var eventsURL = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=ExyGUG26TxUJ2jSEetnL4IuJhIv3axQm';
 
-router.get('/', function(req, res) {
+router.get('/events', function(req, res) {
 
     var lat;
     var lon;
@@ -51,6 +55,11 @@ router.get('/', function(req, res) {
     //     } 
     //  });
 
+    var preferences = {
+        'sports' : 'football',
+        'music' : 'rock'
+    };
+
      request(eventsURL + '&city=Ann%20Arbor', function(error, response, body) {
          if (!error && response.statusCode == 200) {
              var data = JSON.parse(body);
@@ -59,7 +68,18 @@ router.get('/', function(req, res) {
              console.log(arrlength);
 
             // res.send(data._embedded.events[0].images.url);
-            res.send(data._embedded.events[0].images[0].url);
+            var lst = [];
+            for (var i = 0; i < arrlength; i++) {
+                
+                var str = data._embedded.events[i].classifications[0].segment.name.toLowerCase();
+                console.log(str);
+                console.log('This is a string');
+                if (preferences[str]) {
+                    lst.push(data._embedded.events[i]);
+                }
+            }
+            console.log(lst.length);
+            res.send(lst);
          }
      })
 });
@@ -67,8 +87,8 @@ router.get('/', function(req, res) {
 
 
 
-router.get('/login', function(req, res) {
-    res.render('./login.html');
+router.get('/', function(req, res) {
+    res.render('./login');
 })
 
 router.get('/logout', function(req, res) {

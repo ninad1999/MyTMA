@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/ninad1999/MyTMA#readme",
   "dependencies": {
+    "ejs": "^2.7.1",
     "express": "^4.17.1",
+    "html": "^1.0.0",
     "request": "^2.88.0",
     "socket.io-client": "^2.3.0"
   }
