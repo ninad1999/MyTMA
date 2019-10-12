@@ -11,6 +11,7 @@
     <script src='fullcalendar/packages/core/main.js'></script>
     <script src='fullcalendar/packages/google-calendar/main.js'></script>
     <script src='fullcalendar/packages/daygrid/main.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
     <p>Google Calendar API Quickstart</p>
@@ -69,7 +70,9 @@
       var signoutButton = document.getElementById('signout_button');
      // var doc = $(document);
       var sentData = {};
-      var socket = io.connect("/");
+      //var socket = io.connect("/");
+      // var socket = io('http://localhost');
+      // socket.on('connect', function(){});
       event_start = [];
       event_end = [];
       event_name = [];
@@ -207,6 +210,9 @@
         var lng = position.coords.longitude;
         var acr = position.coords.accuracy;
 
+        console.log(lat);
+        console.log(lng);
+
         // doc.on("mousemove", function() {
         // active = true; 
 
@@ -222,7 +228,7 @@
 
         console.log(sentData);
 
-        socket.emit("send:coords", sentData);
+        //socket.emit("send:coords", sentData);
       //});
     }
 
