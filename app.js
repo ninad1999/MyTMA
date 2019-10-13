@@ -85,8 +85,10 @@ router.get('/', function(req, res) {
                     }  
                 }
             }
-            console.log(lst.length);
-            res.send(lst);
+
+            var selected = lst[Math.floor(Math.random() * lst.length)];
+            //console.log(lst.length);
+            res.send(selected);
          }
      })
 });
