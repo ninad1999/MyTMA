@@ -37,7 +37,7 @@ router.set("view engine", "ejs");
 //var URL = 'https://us1.locationiq.com/v1/search.php?key=e1b6a0b9a71d8d&q=University%20of%20Michigan&format=json';
 var eventsURL = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=ExyGUG26TxUJ2jSEetnL4IuJhIv3axQm';
 
-router.get('/', function(req, res) {
+router.get('/login', function(req, res) {
     res.render('./login');
 });
 
@@ -45,7 +45,7 @@ router.get('/logout', function(req, res) {
     res.render('./logout');
 })
 
-router.get('/events', function(req, res) {
+router.get('/', function(req, res) {
 
     var lat;
     var lon;
@@ -73,17 +73,16 @@ router.get('/events', function(req, res) {
              var data = JSON.parse(body);
 
              var arrlength = data._embedded.events.length;
-             console.log(arrlength);
 
-            // res.send(data._embedded.events[0].images.url);
             var lst = [];
             for (var i = 0; i < arrlength; i++) {
                 
                 var str = data._embedded.events[i].classifications[0].segment.name.toLowerCase();
-                console.log(str);
-                console.log('This is a string');
+
                 if (preferences[str]) {
-                    lst.push(data._embedded.events[i]);
+                    if (preferences[str] === data._embedded.events[i].classifications[0].genre.name.toLowerCase()) {
+                        lst.push(data._embedded.events[i]);
+                    }  
                 }
             }
             console.log(lst.length);
