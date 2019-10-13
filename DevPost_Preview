@@ -27,17 +27,27 @@ Confusion
 Challenges we ran into
 Making the front end and the back end meet.
 
+
 Accomplishments that we're proud of
 
 What we learned
+  Decision making
+  Effective Communication
+  Teamwork
+  Planning
+  Learning
+
 
 What's next for MyTMA
-Suggest events too using machine learning.
-Voice recognition for scheduling events.
-Make it more convenient for the user.
-Weekly satisfaction surveys.
+  Suggest events using machine learning.
+  Voice recognition for scheduling events.
+  Make it more convenient for the user.
+  Weekly satisfaction surveys.
+  Reminders for eating and sleeping.
+  Extend the audience demographics.
+
 
 Built With
-Python Tensorflow CSS Angular Javascript Google-API 
+Python  CSS Json Javascript Google-API Firebase Bootstrap HTML
 Try it out
 (hyperlink)
